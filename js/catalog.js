@@ -44,9 +44,9 @@ function addSelectedItemToCart() {
   for (let option of listOfProductsEl) {
     if (option.hasAttributes('selected')) {
       productName = option.value;
-      quantity = quantityInputEl.value;
 
       // TODO: get the quantity
+      quantity = quantityInputEl.value;
     }
     // TODO: using those, add one item to the Cart
     let cartItem = new CartItem(productName, quantity);
@@ -59,8 +59,8 @@ function updateCartPreview() {
   // TODO: Get the item and quantity from the form
   let listOfProductsEl = document.querySelectorAll('option');
   let quantityInputEl = document.getElementById('quantity');
-  let cartonContentsEl = documet.getElementById('cartContents');
-  let productName;
+  let cartonContentsEl = document.getElementById('cartContents');
+
   let quantity;
   // TODO: Add a new element to the cartContents div with that information
   for (let product of state.allProducts) {
@@ -73,7 +73,7 @@ function updateCartPreview() {
         let figCaptionEl = document.createElement('figcaption');
 
         imgEl.src = product.filePath;
-        imgEl.class = product.filePath;
+        imgEl.class = product.name;
         figCaptionEl.innerText = quantity;
 
 
@@ -84,7 +84,7 @@ function updateCartPreview() {
     }
   }
 
-}
+};
 
 // Set up the "submit" event listener on the form.
 // This is the trigger for the app. When a user "submits" the form, it will
