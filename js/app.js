@@ -31,9 +31,9 @@ Cart.prototype.removeItem = function (item) {
 
 Cart.prototype.updateCounter = function () {
   // TODO: Update the cart count in the header nav with the number of items in the Cart
-this.items.length();
-let itemCountEl = document.getElementById('itemCount');
-itemCountEl.innerText = this.items.length();
+  this.items.length();
+  let itemCountEl = document.getElementById('itemCount');
+  itemCountEl.innerText = this.items.length();
 }
 
 const CartItem = function (product, quantity) {
@@ -45,9 +45,7 @@ const CartItem = function (product, quantity) {
 const Product = function (filePath, name) {
   this.filePath = filePath;
   this.name = name;
-  product.allProducts.push(this);
 };
-product.allProducts = [];
 
 function generateCatalog() {
   let bag = new Product('assets/bag.jpg', 'Bag');
