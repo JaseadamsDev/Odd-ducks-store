@@ -12,9 +12,11 @@ function populateForm() {
   //TODO: Add an <option> tag inside the form's select for each product
   const selectElement = document.getElementById('items');
   for (let i in state.allProducts) {
-
+    let optionEl = document.createElement('option')
+    optionEl.value = i.name;
+    optionEl.innerText = i.name;
+    selectElement.appendChild(optionEl)
   }
-
 }
 
 // When someone submits the form, we need to add the selected item to the cart
@@ -23,7 +25,7 @@ function populateForm() {
 function handleSubmit(event) {
 
   // TODO: Prevent the page from reloading
-
+  event.preventDefault();
   // Do all the things ...
   addSelectedItemToCart();
   state.cart.saveToLocalStorage();
@@ -35,14 +37,53 @@ function handleSubmit(event) {
 // TODO: Add the selected item and quantity to the cart
 function addSelectedItemToCart() {
   // TODO: suss out the item picked from the select list
-  // TODO: get the quantity
-  // TODO: using those, add one item to the Cart
-}
+  let listOfProductsEl = document.querySelectorAll('option');
+  let quantityInputEl = document.getElementById('quantity');
+  let productName;
+  let quantity;
+  for (let option of listOfProductsEl) {
+    if (option.hasAttributes('selected')) {
+      productName = option.value;
+      quantity = quantityInputEl.value;
+
+      // TODO: get the quantity
+    }
+    // TODO: using those, add one item to the Cart
+    let cartItem = new CartItem(productName, quantity);
+    state.cart.push(cartItem)
+  }
+};
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
   // TODO: Get the item and quantity from the form
+  let listOfProductsEl = document.querySelectorAll('option');
+  let quantityInputEl = document.getElementById('quantity');
+  let cartonContentsEl = documet.getElementById('cartContents');
+  let productName;
+  let quantity;
   // TODO: Add a new element to the cartContents div with that information
+  for (let product of state.allProducts) {
+    for (let option of listOfProductsEl) {
+      if (product.name === option.value) {
+        quantity = quantityInputEl.value;
+
+        let figureEl = document.createElement('figure')
+        let imgEl = document.createElement('img');
+        let figCaptionEl = document.createElement('figcaption');
+
+        imgEl.src = product.filePath;
+        imgEl.class = product.filePath;
+        figCaptionEl.innerText = quantity;
+
+
+        figureEl.appendChild(imgEl);
+        figureEl.appendChild(figCaptionEl);
+        cartonContentsEl.appendChild(imgEl);
+      }
+    }
+  }
+
 }
 
 // Set up the "submit" event listener on the form.
