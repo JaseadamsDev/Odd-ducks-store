@@ -1,1 +1,118 @@
 /* TODO: Make it awesome */
+
+body {
+    background-color: #FEFAE0;
+    font-family: 'Roboto Slab', serif;
+    text-align: center;
+}
+
+/* Nav Bar */
+body>header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    background-color: #BC6C25;
+}
+
+body>header>h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.5rem;
+    margin: 10px;
+    color: #FEFAE0;
+}
+
+header nav ul {
+    text-align: right;
+    display: inline-flex;
+    margin-top: 10px;
+}
+
+header nav ul li {
+    margin: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    color: #FEFAE0;
+    text-decoration: none;
+}
+
+#itemCount {
+    margin: 10px;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid black;
+    padding: 4px;
+    border-radius: 50px;
+}
+
+/* main section  */
+.card>header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 30px auto;
+}
+
+.copy {
+    margin: 30px auto;
+}
+
+/* form section  */
+#catalog {
+    border: 3px solid #283618;
+    padding: 30px;
+    width: 75%;
+    margin: 30px auto;
+    border-radius: 10px;
+}
+
+#catalog>fieldset>legend {
+    margin: 30px auto;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+#catalog input[type="submit"] {
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #283618;
+    color: #FEFAE0;
+    font-weight: bold;
+    transition: 1s;
+}
+
+#catalog input[type="submit"]:hover {
+
+    background-color: #FEFAE0;
+    color: #BC6C25;
+}
+
+
+/* images */
+
+#cartContents {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin: 30px 30px;
+}
+
+img {
+    height: 150px;
+    width: 150px;
+    border-radius: 40%;
+    margin: 10px;
+}
+
+/* cart section  */
+
+#cart {
+    text-align: center;
+    margin: 30px auto;
+}
+td>a {
+    background-color: #BC6C25;
+    padding: 5px;
+    border-radius: 10px;
+}
