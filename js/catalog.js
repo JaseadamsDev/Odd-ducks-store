@@ -13,7 +13,6 @@ function populateForm() {
   const selectElement = document.getElementById('items');
   for (let i of state.allProducts) {
     let optionEl = document.createElement('option')
-    console.log(i);
     optionEl.value = i.name;
     optionEl.innerText = i.name;
     selectElement.appendChild(optionEl)
@@ -38,53 +37,44 @@ function handleSubmit(event) {
 // TODO: Add the selected item and quantity to the cart
 function addSelectedItemToCart() {
   // TODO: suss out the item picked from the select list
-  let listOfProductsEl = document.querySelectorAll('option');
+  let selectItemEl = document.getElementById('items');
   let quantityInputEl = document.getElementById('quantity');
-  let productName;
   let quantity;
-  for (let option of listOfProductsEl) {
-    if (option.hasAttributes('selected')) {
-      productName = option.value;
 
+  for (let product of state.allProducts) {
+    if (selectItemEl.value === product.name) {
       // TODO: get the quantity
+      console.log('touched')
       quantity = quantityInputEl.value;
+      state.cart.addItem(product, quantity)
     }
-    // TODO: using those, add one item to the Cart
-    let cartItem = new CartItem(productName, quantity);
-    state.cart.push(cartItem)
   }
 };
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
-  // TODO: Get the item and quantity from the form
-  let listOfProductsEl = document.querySelectorAll('option');
-  let quantityInputEl = document.getElementById('quantity');
-  let cartonContentsEl = document.getElementById('cartContents');
+  let cartContentsEl = document.getElementById('cartContents');
 
-  let quantity;
+
   // TODO: Add a new element to the cartContents div with that information
-  for (let product of state.allProducts) {
-    for (let option of listOfProductsEl) {
-      if (product.name === option.value) {
-        quantity = quantityInputEl.value;
 
-        let figureEl = document.createElement('figure')
-        let imgEl = document.createElement('img');
-        let figCaptionEl = document.createElement('figcaption');
+  console.log(state.cart.items[0].product.filePath)
 
-        imgEl.src = product.filePath;
-        imgEl.class = product.name;
-        figCaptionEl.innerText = quantity;
+  for (let cartItem of state.cart.items) {
+    console.log(cartItem)
+    let figureEl = document.createElement('figure')
+    let imgEl = document.createElement('img');
+    let figCaptionEl = document.createElement('figcaption');
+
+    imgEl.src = cartItem.product.filePath;
+    imgEl.class = cartItem.product.name;
+    figCaptionEl.innerText = quantity;
 
 
-        figureEl.appendChild(imgEl);
-        figureEl.appendChild(figCaptionEl);
-        cartonContentsEl.appendChild(imgEl);
-      }
-    }
+    figureEl.appendChild(imgEl);
+    figureEl.appendChild(figCaptionEl);
+    cartContentsEl.appendChild(imgEl);
   }
-
 };
 
 // Set up the "submit" event listener on the form.
@@ -96,6 +86,3 @@ catalogForm.addEventListener('submit', handleSubmit);
 // Before anything else of value can happen, we need to fill in the select
 // drop down list in the form.
 populateForm();
-
-
-//test
