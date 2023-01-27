@@ -44,7 +44,7 @@ function addSelectedItemToCart() {
   for (let product of state.allProducts) {
     if (selectItemEl.value === product.name) {
       // TODO: get the quantity
-      console.log('touched')
+
       quantity = quantityInputEl.value;
       state.cart.addItem(product, quantity)
     }
@@ -54,26 +54,23 @@ function addSelectedItemToCart() {
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
   let cartContentsEl = document.getElementById('cartContents');
-
+  let quantityInputEl = document.getElementById('quantity').value;
 
   // TODO: Add a new element to the cartContents div with that information
 
-  console.log(state.cart.items[0].product.filePath)
-
   for (let cartItem of state.cart.items) {
-    console.log(cartItem)
     let figureEl = document.createElement('figure')
     let imgEl = document.createElement('img');
     let figCaptionEl = document.createElement('figcaption');
 
     imgEl.src = cartItem.product.filePath;
     imgEl.class = cartItem.product.name;
-    figCaptionEl.innerText = quantity;
+    figCaptionEl.innerText = quantityInputEl;
 
 
     figureEl.appendChild(imgEl);
     figureEl.appendChild(figCaptionEl);
-    cartContentsEl.appendChild(imgEl);
+    cartContentsEl.appendChild(figureEl);
   }
 };
 
