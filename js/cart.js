@@ -5,7 +5,6 @@
 const table = document.getElementById('cart');
 table.addEventListener('click', removeItemFromCart);
 
-
 function loadCart() {
   const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
   state.cart = new Cart(cartItems);
@@ -19,7 +18,11 @@ function renderCart() {
 }
 
 // TODO: Remove all of the rows (tr) in the cart table (tbody)
-function clearCart() { }
+function clearCart() {
+  let tBodyEl = document.querySelector('tbody');
+  let trEl = tBodyEl.querySelectorAll('tr')
+  trEl.innerText = '';
+}
 
 // TODO: Fill in the <tr>'s under the <tbody> for each item in the cart
 function showCart() {
@@ -60,10 +63,9 @@ function showCart() {
 
 function removeItemFromCart(event) {
   // TODO: When a delete link is clicked, use cart.removeItem to remove the correct item
-  console.log(event.target.className)
+
   for (let cartItem of state.cart.items) {
     if (event.target.className === cartItem.product.name) {
-      console.log(cartItem.product.name)
       state.cart.removeItem(cartItem)
     }
   }
